@@ -1,0 +1,97 @@
+.centerBarraTop{
+  background-color: #2b669a;
+  color: white;
+  text-align: center;
+}
+.backBTN{
+  cursor: pointer;
+  display: inline-block;
+  float: left;
+  font-size: 35px;
+}
+.modalTitulo{
+  font-size: 25px;
+}
+.cajaInformacion{
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  height: 80px;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1%;
+  padding: 0 1% 0 1%;
+  cursor: no-drop;
+  font-size: 25px;
+  text-align: center;
+}
+.idText{
+  display: inline-block;
+  width: 20%;
+}
+.ganadorText{
+  display: inline-block;
+  width: 60%;
+}
+.tiempoText{
+  display: inline-block;
+  width: 30%;
+}
+.pistaText{
+  display: inline-block;
+  width: 30%;
+}
+.vueltasText{
+  display: inline-block;
+  width: 30%;
+}
+
+.verdeClaro{
+  background-color: lightgreen;
+}
+.verdeClaro:hover{
+  background-color: lightyellow;
+}
+.cafeClaro{
+  background-color: sandybrown;
+}
+.cafeClaro:hover{
+  background-color: lightyellow;
+}
+.rojoClaro{
+  background-color: lightcoral;
+}
+.rojoClaro:hover{
+  background-color: lightyellow;
+}
+@media (max-width: 650px) {
+  .cajaInformacion{
+    font-size: 20px;
+  }
+  .idText{
+    display: inline-block;
+    width: 20%;
+  }
+  .ganadorText{
+    display: inline-block;
+    width: 80%;
+  }
+  .tiempoText{
+    display: inline-block;
+    width: 50%;
+  }
+  .pistaText{
+    display: inline-block;
+    width: 50%;
+  }
+  .vueltasText{
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+@media (max-width: 330px) {
+  .cajaInformacion{
+    font-size: 16px;
+    margin-bottom: 3%;
+  }
+}

@@ -1,0 +1,72 @@
+.botonesInicio{
+  display: block;
+  width: 100%;
+  margin: 5%;
+}
+.btn{
+  color: #000000;
+  font-weight: bold;
+  width: 200px;
+}
+.btn:hover{
+  color: #fff;
+}
+.botonNuevoJuego{
+  display: inline-block;
+  width: 33%;
+}
+.botonUnirseJuego{
+  display: inline-block;
+  width: 33%;
+}
+.botonRanking{
+  display: inline-block;
+  width: 33%;
+}
+
+.colorBotonNuevo{
+  background-color: lightgreen;
+}
+.colorBotonUnirse{
+  background-color: lightsalmon;
+}
+.colorBotonRanking{
+  background-color: lightblue;
+}
+.colorBotonNuevo:hover{
+  background-color: green;
+}
+.colorBotonUnirse:hover{
+  background-color: orange;
+}
+.colorBotonRanking:hover{
+  background-color: blue;
+}
+.primerTexto{
+  display: block;
+  font-size: 55px;
+}
+.segundoTexto{
+  display: block;
+  font-size: 30px;
+}
+@media (max-width: 620px){
+  .botonNuevoJuego{
+    width: 100%;
+    padding-top: 3% ;
+  }
+  .botonUnirseJuego{
+    width: 100%;
+    padding-top: 5% ;
+  }
+  .botonRanking{
+    width: 100%;
+    padding-top: 5% ;
+  }
+  .primerTexto{
+    font-size: 25px;
+  }
+  .segundoTexto{
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,38 @@
+<!-- Modal Para mostrar los ganadores de los distintos juegos - "Ranking" -->
+<div class="modal fade modal-margin" id="defaultModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" >
+      <div class="modal-header centerBarraTop" >
+        <i data-dismiss="modal" class="material-icons backBTN" (click)="closeModal()" >arrow_back</i>
+        <label id="defaultModalLabel" class="modalTitulo" >Ranking</label>
+      </div>
+
+      <div class="modal-body" >
+
+
+        <div *ngFor="let Juego of ListaJuegos" class="cajaInformacion" [ngClass]="{ 'verdeClaro' : Juego.pista == 'Bosque', 'cafeClaro' : Juego.pista == 'Desierto', 'rojoClaro' : Juego.pista == 'Fuego'}" >
+          <div class="idText">
+            <strong>Id:&nbsp;</strong> {{Juego.id}}
+          </div>
+          <div class="ganadorText">
+            <strong>Ganador:&nbsp;</strong>{{Juego.ganador}}
+          </div>
+          <div class="tiempoText">
+            <strong>Tiempo:&nbsp;</strong> {{Juego.tiempo}}
+          </div>
+          <div class="pistaText">
+            <strong>Pista:&nbsp;</strong> {{Juego.pista}}
+          </div>
+          <div class="vueltasText">
+            <strong>Vueltas:&nbsp;</strong> {{Juego.vueltas}}
+          </div>
+
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="closeModalBTN" type="button" class="btn btn-danger" data-dismiss="modal" (click)="closeModal()" >Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
