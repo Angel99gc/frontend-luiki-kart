@@ -1,0 +1,119 @@
+.leftnav {
+  position: fixed;
+  height: 100%;
+  width: 50%;
+  top: 0;
+  left: 0;
+  background-color: black;
+  overflow-x: hidden;
+  padding-top: 5px
+}
+.tituloPartidas{
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  display: block;
+}
+span {
+  padding: 6px  8px  6px  16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: white;
+  display: block;
+}
+.seleccionado:hover {
+    background-color: darkgray;
+    cursor: pointer;
+}
+.gris {
+  background-color: darkgray;
+}
+.idSize{
+  display: inline-block;
+  width: 30%;
+}
+.tipoSize{
+  display: inline-block;
+  width: 70%;
+}
+.pistaSize{
+   display: inline-block;
+   width: 55%;
+}
+.vueltasSize{
+    display: inline-block;
+    width: 45%;
+}
+.rightnav {
+  position: fixed;
+  height: 100%;
+  width: 50%;
+  top: 0;
+  right: 0;
+  background-color: white;
+  overflow-x: hidden;
+  padding-top: 5px
+}
+.tituloJugadores{
+  display: block;
+  font-size: 30px !important;
+  text-align: center !important;
+  margin-bottom: 1%;
+
+}
+.nombreJugadores{
+  display: block;
+  background-color: lightgray;
+  font-size: 25px !important;
+  text-align: center;
+  margin-bottom: 1%;
+}
+.cajaSelecion{
+  margin-top: 2%;
+  width: 100%;
+  display: flex;
+  justify-content: center
+}
+.btnUnirse{
+  width: 50%;
+}
+.textoBotonUnirse{
+  font-size: 25px;
+}
+@media(max-width: 700px){
+  span{
+    font-size: 17px !important;
+  }
+}
+@media(max-width: 500px){
+  span{
+    font-size: 12px !important;
+  }
+  .tituloJugadores{
+    font-size: 17px !important;
+  }
+  .nombreJugadores{
+    font-size: 12px !important;
+  }
+
+
+}
+@media(max-width: 360px){
+
+  .idSize{
+    width: 100%;
+  }
+  .tipoSize{
+    width: 100%;
+  }
+  .pistaSize{
+    width: 100%;
+  }
+  .vueltasSize{
+    width: 100%;
+  }
+  .btnUnirse{
+    width: 70%;
+  }
+}

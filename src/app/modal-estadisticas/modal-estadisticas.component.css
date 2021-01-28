@@ -1,0 +1,33 @@
+.centerBarraTop{
+  background-color: #2b669a;
+  color: white;
+  text-align: center;
+}
+.modalTitulo{
+  font-size: 25px;
+}
+.btnMenuPrincipal{
+  font-size: 20px;
+  width: 100%;
+  justify-content: center;
+}
+.idModal{
+  display: inline-block;
+  width: 40%;
+  font-size: 25px;
+  text-align: center;
+}
+.pistaModal{
+  display: inline-block;
+  width: 60%;
+  font-size: 25px;
+  text-align: center;
+}
+@media (max-width: 340px) {
+ .idModal{
+   width: 34%;
+ }
+  pistaModal{
+    width: 56%;
+  }
+}

@@ -1,0 +1,6 @@
+<p>juego-canvas works!</p>
+<button type="button" class="btn btn-success" id="abrirModal" data-toggle="modal" data-target="#defaultModal" data-controls-modal="#defaultModal" data-backdrop="static" data-keyboard="false" (click)="verEstadisticas()">
+  <i class="material-icons">trending_up</i>
+  <span>Estadisticas</span>
+</button>
+<app-modal-estadisticas *ngIf="renderModal" (Render)="rendererModal($event)"></app-modal-estadisticas>

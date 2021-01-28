@@ -8,30 +8,39 @@
       </div>
 
       <div class="modal-body" >
-
-
-        <div *ngFor="let Juego of ListaJuegos" class="cajaInformacion" [ngClass]="{ 'verdeClaro' : Juego.pista == 'Bosque', 'cafeClaro' : Juego.pista == 'Desierto', 'rojoClaro' : Juego.pista == 'Fuego'}" >
-          <div class="idText">
-            <strong>Id:&nbsp;</strong> {{Juego.id}}
+        <div *ngIf="isEmptyList; else Ranking" >
+          <div class="iconPosition">
+            <i class="material-icons iconSize">local_car_wash</i>
+            <span class="notListLetter">No se han creado carreras.</span>
           </div>
-          <div class="ganadorText">
-            <strong>Ganador:&nbsp;</strong>{{Juego.ganador}}
-          </div>
-          <div class="tiempoText">
-            <strong>Tiempo:&nbsp;</strong> {{Juego.tiempo}}
-          </div>
-          <div class="pistaText">
-            <strong>Pista:&nbsp;</strong> {{Juego.pista}}
-          </div>
-          <div class="vueltasText">
-            <strong>Vueltas:&nbsp;</strong> {{Juego.vueltas}}
-          </div>
-
-
         </div>
-      </div>
-      <div class="modal-footer">
-        <button id="closeModalBTN" type="button" class="btn btn-danger" data-dismiss="modal" (click)="closeModal()" >Cerrar</button>
+        <ng-template #Ranking>
+          <div *ngFor="let partida of listaJuegos">
+            <div class="cajaInformacion" [ngClass]="{ 'verdeClaro' : partida.pista == 'Bosque', 'cafeClaro' : partida.pista == 'Desierto', 'rojoClaro' : partida.pista == 'Fuego'}" >
+              <div class="idText">
+                <strong>Id:&nbsp;</strong> {{partida.id}}
+              </div>
+              <div class="ganadorText">
+                <strong>Ganador:&nbsp;</strong>{{partida.ganador}}
+              </div>
+              <div class="tiempoText">
+                <strong>
+                  <span *ngIf="partida.tipo=='Carrera'; else textContraTiempo">Carrera:</span>
+                  <ng-template #textContraTiempo>ContraTiempo:</ng-template>
+                </strong>{{partida.tiempo.substring(14,19)}}
+              </div>
+              <div class="pistaText">
+                <strong>Pista:</strong> {{partida.pista}}
+              </div>
+              <div class="vueltasText">
+                <strong>Vueltas:&nbsp;</strong> {{partida.vueltas}}
+              </div>
+            </div>
+            <hr class="solid">
+          </div>
+        </ng-template>
+        <button id="closeModalBTN" type="button" class="btn btn-danger btnClose" data-dismiss="modal" (click)="closeModal()" >Cerrar</button>
+
       </div>
     </div>
   </div>

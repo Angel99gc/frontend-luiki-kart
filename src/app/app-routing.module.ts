@@ -3,6 +3,9 @@ import { InicioComponent } from './inicio/inicio.component';
 import { NuevaPartidaComponent } from './nueva-partida/nueva-partida.component';
 import { UnirsePartidaComponent } from './unirse-partida/unirse-partida.component';
 import { ModalRankingComponent } from './modal-ranking/modal-ranking.component';
+import {DocumentListComponent} from './document-list/document-list.component';
+import {PruebaComponent} from './prueba/prueba.component';
+import {JuegoCanvasComponent} from './juego-canvas/juego-canvas.component';
 
 
 export const Rutas: Routes  = [
@@ -18,6 +21,9 @@ export const Rutas: Routes  = [
   },
   {
     path: 'ranking', component: ModalRankingComponent,  pathMatch: 'full'
+  },
+  {
+    path: 'juego', component: JuegoCanvasComponent,  pathMatch: 'full'
   },
   {
     path: '**', redirectTo: 'inicio'

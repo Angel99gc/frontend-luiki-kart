@@ -14,4 +14,8 @@ export class DataService {
     let headers = {};
     return this.httpClient.get(this._URL_SERVIDOR + 'ranking/getRanking',{headers})
   }
+  PostCarrera(dataQuery: JSON){
+    let headers = {};
+    return this.httpClient.post(this._URL_SERVIDOR+ 'ranking/postRanking', dataQuery,{headers})
+  }
 }

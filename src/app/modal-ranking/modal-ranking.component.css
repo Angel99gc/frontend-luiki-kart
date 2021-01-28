@@ -1,3 +1,21 @@
+/* Divider */
+hr.solid {
+  border-top: 3px solid #bbb;
+}
+.notListLetter{
+  font-weight: bold;
+  font-size: 20px;
+  font-style: initial;
+}
+.iconSize{
+  font-size: 200px;
+  display: block;
+}
+.iconPosition{
+  text-align: center;
+  margin-bottom: 4%;
+}
+
 .centerBarraTop{
   background-color: #2b669a;
   color: white;
@@ -18,8 +36,6 @@
   display: block;
   position: relative;
   overflow: hidden;
-  margin-bottom: 1%;
-  padding: 0 1% 0 1%;
   cursor: no-drop;
   font-size: 25px;
   text-align: center;
@@ -34,34 +50,47 @@
 }
 .tiempoText{
   display: inline-block;
-  width: 30%;
+  width: 38%;
 }
 .pistaText{
   display: inline-block;
-  width: 30%;
+  width: 27%;
 }
 .vueltasText{
   display: inline-block;
-  width: 30%;
+  width: 28%;
 }
-
+.btnClose{
+  font-size: 20px;
+  width: 100%;
+  justify-content: center;
+}
 .verdeClaro{
   background-color: lightgreen;
 }
 .verdeClaro:hover{
-  background-color: lightyellow;
+  background-color: #FFB600;
 }
 .cafeClaro{
   background-color: sandybrown;
 }
 .cafeClaro:hover{
-  background-color: lightyellow;
+  background-color: #FFB600;
 }
 .rojoClaro{
   background-color: lightcoral;
 }
 .rojoClaro:hover{
-  background-color: lightyellow;
+  background-color: #FFB600;
+}
+
+@media (max-width: 992px) {
+  .modal-lg{
+    width: 88% !important;
+  }
+  .cajaInformacion{
+    font-size: 20px;
+  }
 }
 @media (max-width: 650px) {
   .cajaInformacion{
@@ -89,9 +118,19 @@
   }
 }
 
-@media (max-width: 330px) {
+@media (max-width: 530px) {
+  .cajaInformacion{
+    font-size: 18px;
+  }
+
+}
+@media (max-width: 465px) {
   .cajaInformacion{
     font-size: 16px;
-    margin-bottom: 3%;
+    height: 85px;
+
+  }
+  .tiempoText{
+    width: 100%;
   }
 }

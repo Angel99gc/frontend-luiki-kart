@@ -1,0 +1,30 @@
+<!-- Modal Para mostrar los ganadores de los distintos juegos - "Ranking" -->
+<div class="modal fade modal-margin" id="defaultModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" >
+      <div class="modal-header centerBarraTop" >
+        <label id="defaultModalLabel" class="modalTitulo">Posiciones</label>
+      </div>
+
+      <div class="modal-body" >
+        <div class="idModal">
+          <strong>ID:</strong>
+          1000
+        </div>
+        <div class="pistaModal">
+          <strong>Pista:</strong>
+          Desierto
+        </div>
+        <hr>
+        <div *ngFor="let jugador of listaJugadores">
+          <span>jugador</span>
+          <hr>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button id="closeModalBTN" type="button" class="btn btn-success btnMenuPrincipal" data-dismiss="modal" (click)="closeModal()" >Ir a Inicio</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,7 +12,7 @@ export class InicioComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  renderReceived(event: any){
+  rendererModal(event: any){
     this.renderModal = event;
   }
   verRanking(){

@@ -1,1 +1,104 @@
-<p>nueva-partida works!</p>
+<ng-container>
+  <div class="fondoImagen">
+    <div class="tituloConfig sombra">
+      <strong>Configuracion</strong>
+    </div>
+
+    <div class="tituloSelect sombra">
+      <strong>Tipo:</strong>
+    </div>
+    <div class="cajaSelecion">
+      <button type="button" class="btn botonIzquierda" (click)="editIndexTipo('-')">
+        <i class="material-icons">keyboard_arrow_left</i>
+      </button>
+      <div class="cajaSelectText sombra" [ngClass]="{'verdeExtra':getTipo() == 'ContraTiempo'}">
+        <strong>{{getTipo()}}</strong>
+      </div>
+      <button type="button" class="btn botonDerecha" (click)="editIndexTipo('+')">
+        <i class="material-icons">keyboard_arrow_right</i>
+      </button>
+    </div>
+
+    <div class="tituloSelect sombra verdeExtra" *ngIf="getTipo()=='ContraTiempo'">
+      <strong>ContraTiempo:</strong>
+    </div>
+    <div class="cajaSelecion" *ngIf="getTipo()=='ContraTiempo'">
+      <button type="button" class="btn botonIzquierda" (click)="editIndexContratiempo('-')">
+        <i class="material-icons">keyboard_arrow_left</i>
+      </button>
+      <div class="cajaSelectText sombra verdeExtra">
+        <strong>{{getContratiempo()}}</strong>
+      </div>
+      <button type="button" class="btn botonDerecha" (click)="editIndexContratiempo('+')">
+        <i class="material-icons">keyboard_arrow_right</i>
+      </button>
+    </div>
+
+    <div class="tituloSelect sombra">
+      <strong>Pista:</strong>
+    </div>
+    <div class="cajaSelecion">
+      <button type="button" class="btn botonIzquierda" (click)="editIndexPista('-')">
+        <i class="material-icons">keyboard_arrow_left</i>
+      </button>
+      <div class="cajaSelectText sombra">
+        <strong>{{getPista()}}</strong>
+      </div>
+      <button type="button" class="btn botonDerecha" (click)="editIndexPista('+')">
+        <i class="material-icons">keyboard_arrow_right</i>
+      </button>
+    </div>
+
+    <div class="tituloSelect sombra">
+      <strong>Vueltas:</strong>
+    </div>
+    <div class="cajaSelecion">
+      <button type="button" class="btn botonIzquierda" (click)="editVueltas('-')">
+        <i class="material-icons">keyboard_arrow_left</i>
+      </button>
+      <div class="cajaSelectText sombra">
+        <strong>{{vueltas}}</strong>
+      </div>
+      <button type="button" class="btn botonDerecha" (click)="editVueltas('+')">
+        <i class="material-icons">keyboard_arrow_right</i>
+      </button>
+    </div>
+    <div class="tituloSelect sombra">
+      <strong>Jugadores:</strong>
+    </div>
+    <div class="cajaSelecion">
+      <button type="button" class="btn botonIzquierda" (click)="editCantJugadores('-')">
+        <i class="material-icons">keyboard_arrow_left</i>
+      </button>
+      <div class="cajaSelectText sombra">
+        <strong>{{ cantJugadores }}</strong>
+      </div>
+      <button type="button" class="btn botonDerecha" (click)="editCantJugadores('+')">
+        <i class="material-icons">keyboard_arrow_right</i>
+      </button>
+    </div>
+
+    <div class="tituloSelect sombra">
+      <strong>Tiempo en Sala:</strong>
+    </div>
+    <div class="cajaSelecion">
+      <button type="button" class="btn botonIzquierda" (click)="editTiempoEspera('-')">
+        <i class="material-icons">keyboard_arrow_left</i>
+      </button>
+      <div class="cajaSelectText sombra">
+        <strong>{{getTiempoEspera()}}</strong>
+      </div>
+      <button type="button" class="btn botonDerecha" (click)="editTiempoEspera('+')">
+        <i class="material-icons">keyboard_arrow_right</i>
+      </button>
+    </div>
+
+    <div class="cajaSelecion">
+      <button type="button" class="btn btn-success botonIniciarPartida" (click)="crearPartida()" >
+        <i class="material-icons">directions_car</i>
+        <span class="textoBotonIniciarPartida">Iniciar Partida</span>
+      </button>
+    </div>
+  </div>
+
+</ng-container>

@@ -1,0 +1,80 @@
+.tituloConfig{
+  display: inline-block;
+  width: 100%;
+  font-size: 45px;
+  text-align: center;
+  margin-top: 2%
+}
+.cajaSelecion{
+  margin-bottom: 2%;
+  width: 100%;
+  display: flex;
+  justify-content: center
+}
+
+.tituloSelect{
+  display: inline-block;
+  width: 100%;
+  font-size: 30px;
+  text-align: center;
+  margin-top: 2%;
+}
+.cajaSelectText{
+  width: 25%;
+  font-size: 25px;
+  text-align: center;
+}
+.botonIzquierda{
+  width: 10%;
+}
+.botonIzquierda:hover{
+  background: #2aabd2;
+}
+.botonDerecha{
+  width: 10%;
+}
+.botonDerecha:hover{
+  background: #2aabd2;
+}
+.botonIniciarPartida{
+  width: 45%;
+}
+.textoBotonIniciarPartida{
+  font-size: 30px;
+}
+.verdeExtra{
+  color: #5cb85c;
+}
+@media (max-width: 700px) {
+  .cajaSelectText{
+    width: 50%;
+  }
+}
+@media (max-width: 490px) {
+  .tituloConfig{
+    font-size: 35px;
+  }
+  .cajaSelectText{
+    width: 50%;
+  }
+  .botonIzquierda{
+    width: 15%;
+  }
+  .botonDerecha{
+    width: 15%;
+  }
+
+  .botonIniciarPartida{
+    width: 80%;
+  }
+}
+
+@media (max-width: 350px) {
+  .tituloSelect{
+    font-size: 25px;
+  }
+  .cajaSelectText{
+    font-size: 20px;
+  }
+
+}

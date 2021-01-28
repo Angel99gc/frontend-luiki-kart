@@ -1,7 +1,8 @@
 .botonesInicio{
   display: block;
   width: 100%;
-  margin: 5%;
+  padding-top: 2%;
+  padding-left: 5%;
 }
 .btn{
   color: #000000;

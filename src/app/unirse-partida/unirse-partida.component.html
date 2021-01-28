@@ -1,1 +1,44 @@
-<p>unirse-partida works!</p>
+<div class='leftnav'>
+  <div class="tituloPartidas">
+    Partidas:
+  </div>
+  <hr>
+  <!--No hay partidas creadas-->
+  <div *ngFor="let partida of partidas">
+    <span class="seleccionado" [ngClass]="{'gris':id.toString()==partida.id}" (click)="setID(partida.id)">
+      <div class="idSize">
+        <strong>ID:&nbsp;</strong>
+        {{partida.id}}
+      </div>
+      <div class="tipoSize">
+        <strong>Tipo:&nbsp;</strong>
+        {{partida.tipo}}
+      </div>
+      <div class="pistaSize">
+        <strong>Pista:&nbsp;</strong>
+        {{partida.pista}}
+      </div>
+      <div class="vueltasSize">
+        <strong>Vueltas:&nbsp;</strong>
+        {{partida.vueltas }}
+      </div>
+
+    </span>
+    <hr>
+  </div>
+
+
+</div>
+<div class='rightnav'>
+  <div>
+    <strong class="tituloJugadores">Jugadores(2/<!--{{lengthJugadores}}/{{cantJugadores}}-->1):</strong>
+    <div class="nombreJugadores" *ngFor="let jugador of jugadores">{{jugador.nombre}}</div>
+    <div class="cajaSelecion">
+      <button type="button" class="btn btn-success btnUnirse" (click)="unirsePartida()" >
+        <i class="material-icons">directions_car</i>
+        <span class="textoBotonUnirse">Unirse</span>
+      </button>
+    </div>
+  </div>
+
+</div>
