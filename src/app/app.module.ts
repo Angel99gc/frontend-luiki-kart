@@ -4,10 +4,13 @@ import { NgModule } from '@angular/core';
 
 import {RouterModule} from '@angular/router';
 import { Rutas } from './app-routing.module';
+import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from "ngx-spinner";
 
-import { SocketIoModule } from 'ngx-socket-io';
+import { SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
+const config: SocketIoConfig = {url:environment.URL_SERVIDOR};
+
 import { CookieService } from 'ngx-cookie-service';
 import { SocketService } from './socket.service';
 
@@ -19,8 +22,6 @@ import { NuevaPartidaComponent } from './nueva-partida/nueva-partida.component';
 import { ModalRankingComponent } from './modal-ranking/modal-ranking.component';
 
 import { DataService } from './data.service';
-import { DocumentListComponent } from './document-list/document-list.component';
-import { DocumentComponent } from './document/document.component';
 import { FormsModule } from '@angular/forms';
 import { PruebaComponent } from './prueba/prueba.component';
 import { JuegoCanvasComponent } from './juego-canvas/juego-canvas.component';
@@ -34,8 +35,6 @@ import { ModalEstadisticasComponent } from './modal-estadisticas/modal-estadisti
     UnirsePartidaComponent,
     NuevaPartidaComponent,
     ModalRankingComponent,
-    DocumentListComponent,
-    DocumentComponent,
     PruebaComponent,
     JuegoCanvasComponent,
     ModalEstadisticasComponent
@@ -46,7 +45,7 @@ import { ModalEstadisticasComponent } from './modal-estadisticas/modal-estadisti
     HttpClientModule,
     NgxSpinnerModule,
     RouterModule.forRoot(Rutas),
-    SocketIoModule,
+    SocketIoModule.forRoot(config),
     FormsModule
   ],
   providers: [DataService, SocketService, CookieService],

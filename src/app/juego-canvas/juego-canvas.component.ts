@@ -75,7 +75,6 @@ export class JuegoCanvasComponent implements OnInit {
     //Solo si es el creador de la partida.
     if (this.cookieService.check('configuracion')){
       let jsonConfig:any = JSON.parse(this.cookieService.get('configuracion'));
-      console.log('creador de la partida');
 
       let configuracion = new Configuracion(jsonConfig.TIPO, jsonConfig.CONTRATIEMPO, jsonConfig.PISTA, jsonConfig.VUELTAS, jsonConfig.CANTJUGADORES, jsonConfig.TIEMPOSALA);
       console.log(configuracion)
