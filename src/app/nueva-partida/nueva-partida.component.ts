@@ -21,7 +21,7 @@ export class NuevaPartidaComponent implements OnInit {
   private _listaPistas = ['Bosque', 'Desierto', 'Lava' ];
   indexPista = 0;
   private _vueltas:number = 1
-  private _cantJugadores:number = 1
+  private _cantJugadores:number = 2
   private _listaTiempoEspera = ['30seg', '1min', '1:30', '2min', '2:30', '3min', '3:30'];
   indexTiempoEspera = 0;
 
@@ -89,7 +89,7 @@ export class NuevaPartidaComponent implements OnInit {
   }
   editCantJugadores(tipoBoton:string){
     if(tipoBoton=='-'){
-      if (this._cantJugadores!=1) return this._cantJugadores--;
+      if (this._cantJugadores!=2) return this._cantJugadores--;
     }else{
       this._cantJugadores++;
     }
@@ -115,6 +115,7 @@ export class NuevaPartidaComponent implements OnInit {
       TIEMPOSALA: this._listaTiempoEspera[this.indexTiempoEspera]
     }
     this.cookieService.set('configuracion', JSON.stringify(data));
+    this.cookieService.delete('idPartida');
     this.router.navigate(['/juego']);
     this.spinner.hide();
   }

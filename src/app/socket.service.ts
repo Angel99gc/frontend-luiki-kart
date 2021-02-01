@@ -1,26 +1,40 @@
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { io } from 'socket.io-client';
 import { environment } from 'src/environments/environment';
-import { CookieService } from 'ngx-cookie-service';
 import { Configuracion} from './Clases/configuracion';
+import { Observable } from 'rxjs';
 
 @Injectable()
-export class SocketService {
-
+export class SocketService  {
   socket: any;
+
   constructor() {
   }
 
   crearConexion(){
-    return this.socket = io(environment.URL_SERVIDOR);
+    this.socket = io(environment.URL_SERVIDOR);
   }
   crearSala(configuracion:Configuracion) {
-    return this.socket.emit('crearSala', configuracion);
+    this.socket.emit('crearSala', configuracion);
+  }
+  unirseSala(data:JSON) {
+    this.socket.emit('unirseSala', data);
   }
   getPartidas(){
-    this.socket.on('getPartidas', (partidas:any) =>{
-      console.log(partidas);
-    });
+    return new Observable((observable:any)=>{
+      this.socket.on('getPartidasEspera', (partidas:any) => {
+        observable.next(partidas);
+      });
+      return () => {};
+    })
+  }
+  getPartida(){
+    return new Observable((observable:any)=>{
+      this.socket.on('getPartida', (partida:any) => {
+        observable.next(partida);
+      });
+      return () => {};
+    })
   }
 
 }

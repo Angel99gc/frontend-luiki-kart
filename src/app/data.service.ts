@@ -10,6 +10,10 @@ export class DataService {
 
   private _URL_SERVIDOR: string = environment.URL_SERVIDOR;
 
+  get URL_SERVIDOR(): string {
+    return this._URL_SERVIDOR;
+  }
+
   GetListaJuegosFinalizados(){
     let headers = {};
     return this.httpClient.get(this._URL_SERVIDOR + 'ranking/getRanking',{headers})

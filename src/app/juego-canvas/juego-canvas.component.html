@@ -1,4 +1,37 @@
-<p>juego-canvas works!</p>
+<!-- INGRESAR EL NOMBRE DE USUARIO Y EL  AUTO ESCOGIDO.-->
+<div class="contenedorRegistroPartida" *ngIf = "(!this.renderJuego);else juegoCanvas">
+  <div class="tituloConfig sombra">
+    <strong>Nombre de usuario</strong>
+  </div>
+  <div class="cajaSelecion">
+    <input type="text" class="inputText"  placeholder="" autofocus=""  required="" aria-required="true" maxlength="15" [(ngModel)]="usuario" >
+  </div>
+  <div class="tituloConfig sombra">
+    <strong>Auto:</strong>
+  </div>
+  <div class="cajaSelecion">
+    <button type="button" class="btn botonIzquierda" (click)="editIndexAuto('-')">
+      <i class="material-icons">keyboard_arrow_left</i>
+    </button>
+    <div class="cajaSelectText sombra">
+      <strong>{{getAuto()}}</strong>
+    </div>
+    <button type="button" class="btn botonDerecha" (click)="editIndexAuto('+')">
+      <i class="material-icons">keyboard_arrow_right</i>
+    </button>
+  </div>
+  <div class="cajaSelecion">
+    <button type="button" class="btn btn-success botonAgregarUsuario" (click)="agregarUsuario()" >
+      <i class="material-icons">directions_car</i>
+      <span class="textoBotonAgregarUsuario">Entrar a Sala</span>
+    </button>
+  </div>
+</div>
+<!-- JUEGO DE CARRERAS GENERADO EN CANVAS-->
+<ng-template #juegoCanvas>
+
+</ng-template>
+<!--MODAL DE ESTADISTICAS PARA EL FINAL DE JUEGO.-->
 <button type="button" class="btn btn-success" id="abrirModal" data-toggle="modal" data-target="#defaultModal" data-controls-modal="#defaultModal" data-backdrop="static" data-keyboard="false" (click)="verEstadisticas()">
   <i class="material-icons">trending_up</i>
   <span>Estadisticas</span>

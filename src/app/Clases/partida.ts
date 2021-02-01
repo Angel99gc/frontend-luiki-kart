@@ -1,14 +1,12 @@
 import {Jugador} from './jugador';
 
 export class Partida {
-  private _listaJugadores: Jugador[];
 
-  constructor(private _id: string, private _estado:string, private _tipo: string, private _contratiempo: string, private _pista: string, private _vueltas: number, private _cantJugadores: number, private _tiempoSala: string) {
-    this._listaJugadores = [];
+  constructor(private _id: number, private _estado:string, private _tipo: string, private _contratiempo: string, private _pista: string, private _vueltas: number, private _cantJugadores: number, private _tiempoSala: string, private _listaJugadores:Jugador[]) {
   }
 
 
-  get id(): string {
+  get id(): number   {
     return this._id;
   }
 
@@ -40,8 +38,6 @@ export class Partida {
     return this._tiempoSala;
   }
 
-  addJugador(nombre:string, carro:string){
-    this._listaJugadores.push(new Jugador(nombre, carro));
-  }
+
 
 }

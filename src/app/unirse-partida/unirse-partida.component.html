@@ -3,9 +3,8 @@
     Partidas:
   </div>
   <hr>
-  <!--No hay partidas creadas-->
-  <div *ngFor="let partida of partidas">
-    <span class="seleccionado" [ngClass]="{'gris':id.toString()==partida.id}" (click)="setID(partida.id)">
+  <div *ngFor="let partida of this.partidas;index as i">
+    <span class="seleccionado" [ngClass]="{'gris':this.i==this.indexPartida}" (click)="this.updateListaJugadores(this.i)">
       <div class="idSize">
         <strong>ID:&nbsp;</strong>
         {{partida.id}}
@@ -31,8 +30,8 @@
 </div>
 <div class='rightnav'>
   <div>
-    <strong class="tituloJugadores">Jugadores(2/<!--{{lengthJugadores}}/{{cantJugadores}}-->1):</strong>
-    <div class="nombreJugadores" *ngFor="let jugador of jugadores">{{jugador.nombre}}</div>
+    <strong class="tituloJugadores">Jugadores({{this.partidas[indexPartida].listaJugadores.length}}/{{this.partidas[this.indexPartida].cantJugadores}}):</strong>
+    <div class="nombreJugadores" *ngFor="let jugador of this.jugadores">{{jugador.nombre}}</div>
     <div class="cajaSelecion">
       <button type="button" class="btn btn-success btnUnirse" (click)="unirsePartida()" >
         <i class="material-icons">directions_car</i>
