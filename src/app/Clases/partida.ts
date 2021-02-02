@@ -10,6 +10,10 @@ export class Partida {
     return this._id;
   }
 
+  get estado(): string {
+    return this._estado;
+  }
+
   get listaJugadores(): Jugador[] {
     return this._listaJugadores;
   }

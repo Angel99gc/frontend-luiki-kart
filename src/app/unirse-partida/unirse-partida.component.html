@@ -28,11 +28,11 @@
 
 
 </div>
-<div class='rightnav'>
-  <div>
+<div class='rightnav' *ngIf="this.partidas.length!=0">
+  <div style="text-align: center">
     <strong class="tituloJugadores">Jugadores({{this.partidas[indexPartida].listaJugadores.length}}/{{this.partidas[this.indexPartida].cantJugadores}}):</strong>
     <div class="nombreJugadores" *ngFor="let jugador of this.jugadores">{{jugador.nombre}}</div>
-    <div class="cajaSelecion">
+    <div class="cajaSelecion" *ngIf="!(this.partidas[indexPartida].listaJugadores.length==this.partidas[this.indexPartida].cantJugadores)">
       <button type="button" class="btn btn-success btnUnirse" (click)="unirsePartida()" >
         <i class="material-icons">directions_car</i>
         <span class="textoBotonUnirse">Unirse</span>

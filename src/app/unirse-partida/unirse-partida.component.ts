@@ -27,11 +27,10 @@ export class UnirsePartidaComponent implements OnInit {
     this.subscription.add(this.socketService.getPartidas().subscribe((data:any)=>{
       console.log(data);
       this._partidas = [];
+      this._jugadores = [];
       data.forEach( (partida:any) => {
         this._partidas.push(new Partida(partida.id, partida.estado, partida.tipo, partida.contratiempo, partida.pista, partida.vueltas, partida.cantJugadores, partida.tiempoSala,partida.jugadores))
       });
-      console.log(this._partidas[this._indexPartida].listaJugadores);
-      this._jugadores = this._partidas[this._indexPartida].listaJugadores;
       if(this.partidas.length==0){
         Swal.fire({
           title: 'No hay partidas creadas.',
@@ -42,7 +41,10 @@ export class UnirsePartidaComponent implements OnInit {
         }).then( () =>{
           this.router.navigate(['inicio']);
         })
+      }else{
+        this._jugadores = this._partidas[this._indexPartida].listaJugadores;
       }
+
     }));
   }
 

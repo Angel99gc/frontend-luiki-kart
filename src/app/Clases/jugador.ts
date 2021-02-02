@@ -9,9 +9,6 @@ export class Jugador{
   get carro(): string {
     return this._carro;
   }
-  get tiempo(): string {
-    return this._tiempo;
-  }
   set tiempo(value: string) {
     this._tiempo = value;
   }

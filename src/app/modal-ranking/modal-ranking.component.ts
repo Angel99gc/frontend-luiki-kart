@@ -49,6 +49,7 @@ export class ModalRankingComponent implements OnInit {
     this.spinner.show();
     this.subscription.add(this.dataService.GetListaJuegosFinalizados().subscribe(
       response => {
+        console.log(response);
         let listaTemporal:any;
         listaTemporal = response;
         listaTemporal = listaTemporal.response.data;

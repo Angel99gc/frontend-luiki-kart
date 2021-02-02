@@ -21,7 +21,7 @@
     </button>
   </div>
   <div class="cajaSelecion">
-    <button type="button" class="btn btn-success botonAgregarUsuario" (click)="agregarUsuario()" >
+    <button type="button" class="btn btn-success botonAgregarUsuario" (click)="crearPartida()" >
       <i class="material-icons">directions_car</i>
       <span class="textoBotonAgregarUsuario">Entrar a Sala</span>
     </button>
@@ -29,11 +29,5 @@
 </div>
 <!-- JUEGO DE CARRERAS GENERADO EN CANVAS-->
 <ng-template #juegoCanvas>
-
+  <app-juego></app-juego>
 </ng-template>
-<!--MODAL DE ESTADISTICAS PARA EL FINAL DE JUEGO.-->
-<button type="button" class="btn btn-success" id="abrirModal" data-toggle="modal" data-target="#defaultModal" data-controls-modal="#defaultModal" data-backdrop="static" data-keyboard="false" (click)="verEstadisticas()">
-  <i class="material-icons">trending_up</i>
-  <span>Estadisticas</span>
-</button>
-<app-modal-estadisticas *ngIf="renderModal" (Render)="rendererModal($event)"></app-modal-estadisticas>

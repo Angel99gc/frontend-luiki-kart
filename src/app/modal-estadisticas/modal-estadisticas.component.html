@@ -16,8 +16,14 @@
           Desierto
         </div>
         <hr>
-        <div *ngFor="let jugador of listaJugadores">
-          <span>jugador</span>
+        <div *ngFor="let jugador of listaJugadores;index as i" class="cajaEstadisticas" [ngClass]="{'oro':i==0, 'plata': i==1, 'bronce': i==2}">
+          <strong>{{i+1}} #</strong>
+          <div>
+            <strong>Nombre: </strong>{{jugador.nombre}}
+          </div>
+          <div>
+            <strong>Tiempo: </strong>{{jugador.tiempo}} seg
+          </div>
           <hr>
         </div>
 

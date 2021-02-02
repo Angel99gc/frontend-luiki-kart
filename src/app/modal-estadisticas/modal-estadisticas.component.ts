@@ -14,7 +14,7 @@ export class ModalEstadisticasComponent implements OnInit {
 
   @Output() Render: EventEmitter<any>;
 
-  private _listaJugadores: Jugador[] = [];
+  private _listaJugadores = [{tiempo:1000, nombre:'Angel'},{tiempo:2000, nombre:'Pedro'},{tiempo:3000, nombre:'Pablo'},{tiempo:4000, nombre:'Mario'}];
 
 
   constructor(private socketService: SocketService, private spinner: NgxSpinnerService, private cookieService:CookieService, private router:Router) {
@@ -25,7 +25,7 @@ export class ModalEstadisticasComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get listaJugadores(): Jugador[] {
+  get listaJugadores() {
     return this._listaJugadores;
   }
 

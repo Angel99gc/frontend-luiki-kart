@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {SocketService} from '../socket.service';
 import {CookieService} from 'ngx-cookie-service';
-import {Configuracion} from '../Clases/configuracion';
-import {Partida} from '../Clases/partida';
-import Swal from "sweetalert2";
 import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-juego-canvas',
@@ -14,44 +12,34 @@ import {Router} from '@angular/router';
 })
 export class JuegoCanvasComponent implements OnInit {
   private subscription: Subscription = new Subscription();
-  //renderiza el modal de estadisticas
-  renderModal: boolean = false;
+
   //renderiza el juego
   renderJuego = false;
   //datos a rellenar del jugador
   usuario = ""; //nombre de usuario
   private _listaAutos = ['Rojo', 'Amarillo','Verde', 'Azul'];
   indexAuto = 0;
+  idNuevaSala:any;
 
 
-  //datos del  juego.
-  partida:any;
-  constructor(private socketService:SocketService, private cookieService: CookieService,  private router:Router){
+
+  constructor(private socketService:SocketService,
+              private cookieService: CookieService,
+              private router:Router){
+    this.socketService.crearConexion();
+
+    this.subscription.add(this.socketService.getIdSala().subscribe((data:any)=>{
+      this.idNuevaSala = data;
+    }));
+    //crea la partida solo si es necesario;
 
   }
 
 
   ngOnInit(): void {
-    this.socketService.crearConexion()
-    //crea la partida solo si es necesario;
-    this.crearPartida();
-    //Hacer el observable de facil
-    this.subscription.add(this.socketService.getPartida().subscribe((data:any)=>{
-      console.log('partida emitida');
-      console.log(data);
-      this.partida = data
-    }));
-    console.log('getPartida logrado')
   }
   ngOnDestroy(){
     this.subscription.unsubscribe();
-  }
-  /** Usado para renderizar el modal **/
-  rendererModal(event: any){
-    this.renderModal = event;
-  }
-  verEstadisticas(){
-    this.renderModal = true;
   }
 
 
@@ -63,45 +51,44 @@ export class JuegoCanvasComponent implements OnInit {
     if(tipoBoton=='-'){
       if (this.indexAuto!=0) return this.indexAuto--;
       else return this.indexAuto=this._listaAutos.length-1
-
     }else{
       if (this.indexAuto+1 != this._listaAutos.length) return this.indexAuto++;
       else return this.indexAuto=0;
     }
   }
 
-  /** Usa cookies para obtener la informacion del componente anterior y crear la partida en el servidor **/
+  /** Usa cookies para obtener la informacion del componente anterior y crear la partida en el servidor o bien unirse a la partida**/
   crearPartida(){
-    //Solo si es el creador de la partida.
-    if (this.cookieService.check('configuracion')){
-      let jsonConfig:any = JSON.parse(this.cookieService.get('configuracion'));
-
-      let configuracion = new Configuracion(jsonConfig.TIPO, jsonConfig.CONTRATIEMPO, jsonConfig.PISTA, jsonConfig.VUELTAS, jsonConfig.CANTJUGADORES, jsonConfig.TIEMPOSALA);
-      console.log(configuracion)
-      this.socketService.crearSala(configuracion);
-    }
-  }
-  agregarUsuario(){
-    let data:any;
-
-    //un nuevo usuario se une a la y se agrega como jugador
-    if(this.cookieService.check('idPartida')){
-      data = {
-        idPartida:this.cookieService.get('idPartida'),
-        nombre:this.usuario,
-        carro: this._listaAutos[this.indexAuto]
+    //revisa que no haya espacios vacios.
+    if(this.usuario==""){
+      Swal.fire({
+        title: 'Error, espacios vacios.',
+        text: 'Complete todos los espacios..',
+        icon: 'error',
+        timer: 4000,
+        showConfirmButton: false,
+      })
+    }else{
+      //Solo si es el creador de la partida. la crea sino se une a una existente.
+      if (this.cookieService.check('configuracion')){
+        let jsonConfig:any = JSON.parse(this.cookieService.get('configuracion'));
+        jsonConfig.nombre = this.usuario;
+        jsonConfig.carro = this._listaAutos[this.indexAuto];
+        this.cookieService.set('idPartida',this.idNuevaSala);
+        this.subscription.add(this.socketService.crearSala(jsonConfig));
+      }else{
+        let data:any = {
+          idPartida:this.cookieService.get('idPartida'),
+          nombre:this.usuario,
+          carro: this._listaAutos[this.indexAuto]
+        }
+        this.subscription.add(this.socketService.unirseSala(data))
       }
+      this.renderJuego = true;
+
     }
-    else{//el creador se agrega como jugador
-      data = {
-        idPartida:0,
-        nombre:this.usuario,
-        carro: this._listaAutos[this.indexAuto]
-      }
-    }
-    console.log(this.partida);
-    this.subscription.add(this.socketService.unirseSala(data))
-    this.renderJuego = true;
+
   }
+
 
 }

@@ -1,7 +1,6 @@
 import { Injectable} from '@angular/core';
 import { io } from 'socket.io-client';
 import { environment } from 'src/environments/environment';
-import { Configuracion} from './Clases/configuracion';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -14,11 +13,18 @@ export class SocketService  {
   crearConexion(){
     this.socket = io(environment.URL_SERVIDOR);
   }
-  crearSala(configuracion:Configuracion) {
+  crearSala(configuracion:JSON) {
     this.socket.emit('crearSala', configuracion);
   }
   unirseSala(data:JSON) {
     this.socket.emit('unirseSala', data);
+  }
+  iniciarPartida(data:JSON) {
+    this.socket.emit('iniciarPartida', data);
+  }
+  //actualiza la partida a todos en la sala.
+  updatePartida(Id:number){
+    this.socket.emit('updatePartida', Id);
   }
   getPartidas(){
     return new Observable((observable:any)=>{
@@ -36,5 +42,28 @@ export class SocketService  {
       return () => {};
     })
   }
-
+  getIdSala(){
+    return new Observable((observable:any)=>{
+      this.socket.on('getIdSala', (id:any) => {
+        observable.next(id);
+      });
+      return () => {};
+    })
+  }
+  getTiempoEspera(){
+    return new Observable((observable:any)=>{
+      this.socket.on('tiempoEspera', (segundos:any) => {
+        observable.next(segundos);
+      });
+      return () => {};
+    })
+  }
+  getTiempoCarrera(){
+    return new Observable((observable:any)=>{
+      this.socket.on('tiempoCarrera', (segundos:any) => {
+        observable.next(segundos);
+      });
+      return () => {};
+    })
+  }
 }

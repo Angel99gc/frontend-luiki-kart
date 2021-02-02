@@ -1,0 +1,54 @@
+.navbarTop{
+  display: block;
+  width: 100%;
+  height: 50px;
+  background-color: #2b669a;
+}
+.textoNavbar{
+  text-align: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 10px;
+  color: white;
+}
+.derechaNav{
+  position: fixed;
+  top: 1%;
+  right: 2%;
+}
+.imagenBosque{
+  background-image: url('src/assets/imagenes/Bosque.jpg');
+}
+.imagenDesierto{
+  background-image: url('src/assets/imagenes/Desierto.jpg');
+}
+.imagenLava{
+   background-image: url('src/assets/imagenes/Rocas.jpg');
+ }
+.canvasClass{
+  display: block;
+  border:2px solid #000000;
+}
+.carro {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  left: 400px;
+  top: 50px;
+}
+.izquierdaCarro{
+  transform: rotate(270deg);
+
+}
+.arribaCarro{
+  transform: rotate(0);
+
+}
+.derechaCarro{
+  transform: rotate(90deg);
+}
+.abajoCarro{
+  transform: rotate(180deg);
+
+}

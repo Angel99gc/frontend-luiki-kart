@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SocketService} from '../socket.service';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {Configuracion} from '../Clases/configuracion';
-import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
 
@@ -17,12 +14,15 @@ export class NuevaPartidaComponent implements OnInit {
   private _listaTipos = ['Carrera', 'ContraTiempo'];
   indexTipo = 0;
   private _listaContratiempos = ['30seg', '1min','1:30', '2min', '2:30', '3min', '3:30'];
+  private _listaContratiemposMs = [30000, 60000, 90000, 120000, 150000, 180000, 210000]
   indexContratiempo = 0;
   private _listaPistas = ['Bosque', 'Desierto', 'Lava' ];
   indexPista = 0;
   private _vueltas:number = 1
   private _cantJugadores:number = 2
   private _listaTiempoEspera = ['30seg', '1min', '1:30', '2min', '2:30', '3min', '3:30'];
+  private _listaTiempoEsperaMs = [30000, 60000, 90000, 120000, 150000, 180000, 210000]
+
   indexTiempoEspera = 0;
 
   constructor(private spinner: NgxSpinnerService,  private router: Router, private cookieService: CookieService) {
@@ -107,12 +107,12 @@ export class NuevaPartidaComponent implements OnInit {
   crearPartida(){
     this.spinner.show();
     let data:any = {
-      TIPO: this._listaTipos[this.indexTipo],
-      CONTRATIEMPO: this._listaContratiempos[this.indexContratiempo],
-      PISTA: this._listaPistas[this.indexPista],
-      VUELTAS: this.vueltas,
-      CANTJUGADORES: this.cantJugadores,
-      TIEMPOSALA: this._listaTiempoEspera[this.indexTiempoEspera]
+      tipo: this._listaTipos[this.indexTipo],
+      contratiempo: this._listaContratiemposMs[this.indexContratiempo],
+      pista: this._listaPistas[this.indexPista],
+      vueltas: this.vueltas,
+      cantJugadores: this.cantJugadores,
+      tiempoSala: this._listaTiempoEsperaMs[this.indexTiempoEspera]
     }
     this.cookieService.set('configuracion', JSON.stringify(data));
     this.cookieService.delete('idPartida');

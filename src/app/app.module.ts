@@ -26,6 +26,7 @@ import { FormsModule } from '@angular/forms';
 import { PruebaComponent } from './prueba/prueba.component';
 import { JuegoCanvasComponent } from './juego-canvas/juego-canvas.component';
 import { ModalEstadisticasComponent } from './modal-estadisticas/modal-estadisticas.component';
+import { JuegoComponent } from './juego/juego.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ModalEstadisticasComponent } from './modal-estadisticas/modal-estadisti
     ModalRankingComponent,
     PruebaComponent,
     JuegoCanvasComponent,
-    ModalEstadisticasComponent
+    ModalEstadisticasComponent,
+    JuegoComponent
   ],
   imports: [
     BrowserModule,
