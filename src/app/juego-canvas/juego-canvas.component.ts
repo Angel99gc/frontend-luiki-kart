@@ -17,7 +17,7 @@ export class JuegoCanvasComponent implements OnInit {
   renderJuego = false;
   //datos a rellenar del jugador
   usuario = ""; //nombre de usuario
-  private _listaAutos = ['Rojo', 'Amarillo','Verde', 'Azul'];
+  private _listaAutos = ['Rojo','Blanco'];
   indexAuto = 0;
   idNuevaSala:any;
 
@@ -70,6 +70,7 @@ export class JuegoCanvasComponent implements OnInit {
       })
     }else{
       //Solo si es el creador de la partida. la crea sino se une a una existente.
+      this.cookieService.set('usuario', this.usuario);
       if (this.cookieService.check('configuracion')){
         let jsonConfig:any = JSON.parse(this.cookieService.get('configuracion'));
         jsonConfig.nombre = this.usuario;

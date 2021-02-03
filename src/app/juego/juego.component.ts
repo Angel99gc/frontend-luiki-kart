@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {SocketService} from '../socket.service';
 import {Subscription} from 'rxjs';
 import {CookieService} from 'ngx-cookie-service';
@@ -11,6 +11,7 @@ import {Jugador} from '../Clases/jugador';
   styleUrls: ['./juego.component.css']
 })
 export class JuegoComponent implements OnInit {
+
   private subscription = new Subscription();
   //renderiza el modal de estadisticas
   renderModal: boolean = false;
@@ -26,20 +27,15 @@ export class JuegoComponent implements OnInit {
   //datos del  juego.
   idPartida:any;
   partida:Partida;
-  jugadores:Jugador[]=[]
-  carro:any = {
-    nombre:'Angel',
-    x:400,
-    y:140,
-    direccion:'izquierda',
-    carro:'rojo',
-  }
+  jugadores:any=[]
+  nombreJugador:any;
+
   constructor(private socketService:SocketService, private cookieService:CookieService) {
+    this.nombreJugador = this.cookieService.get('usuario');
     //inicializo partida
     this.partida = new Partida(0,'Prueba','Carrera','','',1,3,'',[])
-
-
   }
+
   ngOnInit(): void {
     //id de la partida a jugar
     this.idPartida = this.cookieService.get('idPartida');
@@ -49,11 +45,12 @@ export class JuegoComponent implements OnInit {
       this.jugadores = [];
       this.partida = new Partida(data.id, data.estado, data.tipo, data.contratiempo, data.pista, data.vueltas, data.cantJugadores, data.tiempoSala, data.jugadores);
       for(let index in this.partida.listaJugadores){
-        this.jugadores.push(new Jugador(this.partida.listaJugadores[index].nombre, this.partida.listaJugadores[index].nombre))
+        this.jugadores.push(this.partida.listaJugadores[index])
       }
+      if (this.partida.estado == 'iniciada') this.esperando = false;
 
       console.log('Partida emitida:');
-      console.log(this.partida);
+      console.log(this.jugadores);
     }));
     this.subscription.add(this.socketService.getTiempoEspera().subscribe((segundos:any)=>{
       this.tiempoEspera = segundos;
@@ -66,7 +63,6 @@ export class JuegoComponent implements OnInit {
     this.canvas = <HTMLCanvasElement> document.getElementById("juego");
     this.ctx = <CanvasRenderingContext2D> this.canvas.getContext("2d");
     this.ctx.lineWidth = 5;
-
     this.ctx.beginPath();
     this.ctx.moveTo(150, 150);
     this.ctx.lineTo(150, 650);
@@ -90,6 +86,8 @@ export class JuegoComponent implements OnInit {
   verEstadisticas(){
     this.renderModal = true;
   }
+
+
   //da inicio a la carrea con el click en empezar
   startCarrera(){
     let data:any = {
@@ -98,8 +96,33 @@ export class JuegoComponent implements OnInit {
     this.esperando = false;
     this.socketService.iniciarPartida(data);
   }
-  cambiarDireccion(flecha:string){
-    this.carro.direccion = flecha;
-    console.log(this.carro);
+
+  // Detecta los eventos al presionar tecla
+  @HostListener('window:keydown', ['$event'])
+  onKeyDown(event:any){
+    if(!this.esperando){
+      let data:any = {
+        idPartida: this.idPartida,
+        nombre: this.nombreJugador
+      }
+      //detectamos las teclas para el cambio de direccion
+      if(event.code == 'ArrowUp'){
+        data.direccion = 'arriba';
+        this.subscription.add(this.socketService.setDireccionJugador(data));
+      }else if(event.code == 'ArrowDown'){
+        data.direccion = 'abajo';
+        this.subscription.add(this.socketService.setDireccionJugador(data));
+      }else if(event.code == 'ArrowLeft'){
+        data.direccion = 'izquierda';
+        this.subscription.add(this.socketService.setDireccionJugador(data));
+      }else if(event.code == 'ArrowRight'){
+        data.direccion = 'derecha';
+        this.subscription.add(this.socketService.setDireccionJugador(data));
+      }else if(event.key == 'Shift'){
+        this.subscription.add(this.socketService.avanzarJugador(data));
+      }
+    }
   }
+
+
 }

@@ -22,6 +22,12 @@ export class SocketService  {
   iniciarPartida(data:JSON) {
     this.socket.emit('iniciarPartida', data);
   }
+  setDireccionJugador(data:JSON) {
+    this.socket.emit('setDireccionJugador', data);
+  }
+  avanzarJugador(data:JSON) {
+    this.socket.emit('avanzarJugador', data);
+  }
   //actualiza la partida a todos en la sala.
   updatePartida(Id:number){
     this.socket.emit('updatePartida', Id);
