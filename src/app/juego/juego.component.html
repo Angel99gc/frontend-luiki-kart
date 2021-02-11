@@ -17,15 +17,18 @@
   </div>
 </nav>
 <div style="justify-content: center">
-
-    <img *ngFor="let carro of this.jugadores;index as i" id="carro+{{i}}" src="../../assets/imagenes/{{carro.carro}}.png" [ngStyle]="{'top':carro.y.toString()+'px','left':carro.x.toString()+'px' }" class="carro"
+  <div *ngFor="let carro of this.jugadores;index as i">
+    <img  id="carro+{{i}}" src="../../assets/imagenes/{{carro.carro}}.png" [ngStyle]="{'top':carro.y.toString()+'px','left':carro.x.toString()+'px' }"  class="carro"
          [ngClass]="{'izquierdaCarro':carro.direccion=='izquierda', 'derechaCarro': carro.direccion=='derecha', 'abajoCarro': carro.direccion=='abajo', 'arribaCarro':carro.direccion=='arriba'}">
-  <canvas id="juego" width="800" height="800" class="canvasClass" [ngClass]="{'imagenBosque':this.partida.pista=='Bosque','imagenDesierto':this.partida.pista=='Desierto','imagenLava':this.partida.pista=='Lava'}" >
+
+<!--    <div class="sombra nombreCarro">{{carro.nombre}}</div>-->
+  </div>
+ <canvas id="juego" width="800" height="800" class="canvasClass" [ngClass]="{'imagenBosque':this.partida.pista=='Bosque','imagenDesierto':this.partida.pista=='Desierto','imagenLava':this.partida.pista=='Lava'}" >
   </canvas>
 </div>
 
 <!--MODAL DE ESTADISTICAS PARA EL FINAL DE JUEGO.-->
-<button *ngIf="false" type="button" class="btn btn-success" id="abrirModal" data-toggle="modal" data-target="#defaultModal" data-controls-modal="#defaultModal" data-backdrop="static" data-keyboard="false" (click)="verEstadisticas()">
+<button *ngIf="true" type="button" class="btn btn-success" id="abrirModal" data-toggle="modal" data-target="#defaultModal" data-controls-modal="#defaultModal" data-backdrop="static" data-keyboard="false" (click)="verEstadisticas()">
   <i class="material-icons">trending_up</i>
   <span>Estadisticas</span>
 </button>

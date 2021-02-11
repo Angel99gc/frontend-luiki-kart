@@ -4,7 +4,7 @@
   height: 50px;
   background-color: #2b669a;
 }
-.textoNavbar{
+. textoNavbar{
   text-align: center;
   justify-content: center;
   font-weight: bold;
@@ -49,4 +49,8 @@
 .abajoCarro{
   transform: rotate(270deg);
 
+}
+.nombreCarro{
+  position: fixed;
+  font-size: 15px;
 }

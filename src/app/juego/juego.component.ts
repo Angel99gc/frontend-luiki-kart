@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs';
 import {CookieService} from 'ngx-cookie-service';
 import {Partida} from '../Clases/partida';
 import {Jugador} from '../Clases/jugador';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-juego',
@@ -30,7 +31,7 @@ export class JuegoComponent implements OnInit {
   jugadores:any=[]
   nombreJugador:any;
 
-  constructor(private socketService:SocketService, private cookieService:CookieService) {
+  constructor(private socketService:SocketService, private cookieService:CookieService, private router:Router) {
     this.nombreJugador = this.cookieService.get('usuario');
     //inicializo partida
     this.partida = new Partida(0,'Prueba','Carrera','','',1,3,'',[])
@@ -54,6 +55,9 @@ export class JuegoComponent implements OnInit {
     }));
     this.subscription.add(this.socketService.getTiempoEspera().subscribe((segundos:any)=>{
       this.tiempoEspera = segundos;
+      if(this.tiempoEspera == 0 && this.jugadores.length!= this.partida.cantJugadores){
+        this.router.navigate(['/inicio']);
+      }
     }));
     this.subscription.add(this.socketService.getTiempoCarrera().subscribe((segundos:any)=>{
       this.tiempo = segundos

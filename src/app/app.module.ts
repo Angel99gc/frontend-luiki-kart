@@ -8,8 +8,7 @@ import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from "ngx-spinner";
 
-import { SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
-const config: SocketIoConfig = {url:environment.URL_SERVIDOR};
+
 
 import { CookieService } from 'ngx-cookie-service';
 import { SocketService } from './socket.service';
@@ -47,7 +46,6 @@ import { JuegoComponent } from './juego/juego.component';
     HttpClientModule,
     NgxSpinnerModule,
     RouterModule.forRoot(Rutas),
-    SocketIoModule.forRoot(config),
     FormsModule
   ],
   providers: [DataService, SocketService, CookieService],
